@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MapProject1</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="sendText">Enviar</string>
+    <string name="title_activity_city_list">CityListActivity</string>
+    <string name="title_activity_city_details">CityDetails</string>
+</resources>
