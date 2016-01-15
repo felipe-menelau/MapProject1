@@ -1,34 +1,27 @@
 package com.map1.felipe.mapproject1;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.json.*;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class CityListActivity extends Activity {
 
     private JSONObject weather;
-    private ListView mainList;
-    private ArrayAdapter<String> listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +44,7 @@ public class CityListActivity extends Activity {
             }
         });
         thread.start();
-        mainList = (ListView) findViewById(R.id.list);
+        ListView mainList = (ListView) findViewById(R.id.list);
         while(!done[0]){
             try {
                 Thread.sleep(1);
@@ -60,7 +53,7 @@ public class CityListActivity extends Activity {
             }
         }
 
-        ArrayList<String> cidades = new ArrayList<String>();
+        ArrayList<String> cidades = new ArrayList<>();
         try {
             for (int i = 0; i < weather.getJSONArray("list").length(); i++){
                 cidades.add(weather.getJSONArray("list").getJSONObject(i).getString("name"));
@@ -68,7 +61,7 @@ public class CityListActivity extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, cidades);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, R.layout.simplerow, cidades);
         mainList.setAdapter(listAdapter);
         mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,7 +79,7 @@ public class CityListActivity extends Activity {
         try {
             URL url = new URL(urlString);
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             int read;
             char[] chars = new char[1024];
             while ((read = reader.read(chars)) != -1)

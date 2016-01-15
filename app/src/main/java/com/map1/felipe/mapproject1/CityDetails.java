@@ -2,13 +2,7 @@ package com.map1.felipe.mapproject1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -30,25 +24,27 @@ public class CityDetails extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        try {
-            cityname = json1.getJSONArray("list").getJSONObject(i).getString("name");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            maxtemp = json1.getJSONArray("list").getJSONObject(i).getJSONObject("main").getString("temp_max");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            mintemp = json1.getJSONArray("list").getJSONObject(i).getJSONObject("main").getString("temp_min");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            description = json1.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(json1 != null) {
+            try {
+                cityname = json1.getJSONArray("list").getJSONObject(i).getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                maxtemp = json1.getJSONArray("list").getJSONObject(i).getJSONObject("main").getString("temp_max");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                mintemp = json1.getJSONArray("list").getJSONObject(i).getJSONObject("main").getString("temp_min");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                description = json1.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         TextView textview = (TextView) findViewById(R.id.textView);
         textview.setText(String.format("City name:  %s\nMinimum Temperature: %s\nMaximum Temperature: %s\nDescription: %s",
