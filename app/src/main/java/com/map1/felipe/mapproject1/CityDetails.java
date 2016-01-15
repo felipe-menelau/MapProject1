@@ -51,7 +51,7 @@ public class CityDetails extends AppCompatActivity {
             e.printStackTrace();
         }
         TextView textview = (TextView) findViewById(R.id.textView);
-        textview.setText(String.format("City name: %s\nMinimum Temperature: %s\nMaximum Temperature: %s\nDescription: %s",
+        textview.setText(String.format("City name:  %s\nMinimum Temperature: %s\nMaximum Temperature: %s\nDescription: %s",
                 cityname, mintemp, maxtemp, description));
 
     }
