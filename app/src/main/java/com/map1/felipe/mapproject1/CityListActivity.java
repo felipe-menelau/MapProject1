@@ -2,6 +2,7 @@ package com.map1.felipe.mapproject1;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -72,7 +73,6 @@ public class CityListActivity extends Activity {
                 startActivity(intent);
             }
         });
-
     }
     private static String readUrl(String urlString) throws Exception {
         BufferedReader reader = null;
